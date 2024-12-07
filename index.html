@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Donate Bangladesh</title>
+     <!------------------------------- Font-Awesome Link ---------------------------------------------->
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+     <!-------------------------------------- Google Font ------------------------------------------------>
+     <link rel="preconnect" href="https://fonts.googleapis.com">
+     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+     <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Lexend:wght@100..900&family=Manrope:wght@200..800&display=swap" rel="stylesheet">
+     <!-----------------------------------Daisy Ui and Tailwind CSS Link ---------------------------------->
+     <link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.14/dist/full.min.css" rel="stylesheet" type="text/css" />
+     <script src="https://cdn.tailwindcss.com"></script>
+     <!------------------------------ Tailwind Css Configuration ------------------------------------------>
+     <script>
+         tailwind.config = {
+           theme: {
+             extend: {
+               colors: {
+                 primary: '#B4F461',
+                 secondary: '#F9F7F3',
+                 background:'#FFFFFF',
+               },
+               fontFamily:{
+                Lexend:'Lexend',
+               },
+             },
+           },
+         }
+       </script>
+</head>
+<body class="bg-gray-50  ">
+   <section class="">
+     <!-- Sticky Navbar -->
+    <nav class="navbar bg-secondary sticky top-0 z-50 px-6  flex items-center justify-between">
+        <!-- Left Section: Blog Button -->
+        <div class="flex-1">
+          <a href="blog.html" class="btn btn-ghost bg-primary normal-case text-lg text-black font-bold">Blog</a>
+        </div>
+        <!-- Center Section: Donate Bangladesh -->
+        <div class="hidden md:flex absolute left-1/2 transform -translate-x-1/2">
+            <div class="flex items-center gap-2">
+                <img src="./img/logo.png" alt="Icon" class="w-6 h-6 md:w-8 md:h-8">
+                <span class="text-sm md:text-lg font-semibold">Donate Bangladesh</span>
+            </div>
+        </div>
+        <!-- Right Section: Donation Amount -->
+        <div class="flex-none">
+          <div class="flex items-center gap-1">
+            <span><img src="./img/coin.png" alt=""></span>
+            <span  class="text-lg font-semibold text-black"><span id="donation-amount">9000</span> BDT</span>
+          </div>
+        </div>
+      </nav>
+    <!-- Sticky Donation Buttons -->
+    <div class="sticky top-16 z-40 bg-gray-50 py-4 mb-10 ">
+      <div class="mt-2 flex justify-center gap-4">
+        <button id="donation-tab" class="btn bg-primary font-bold">Donation</button>
+        <button id="history-tab" class="btn font-bold">History</button>
+      </div>
+    </div>
+
+    <!-- Modal Structure -->
+    <div id="modelOpen" class="hidden fixed inset-0 bg-gray-800 bg-opacity-50 flex justify-center items-center">
+        <div class="bg-white p-6 rounded-lg shadow-lg w-96">
+            <h2 class="text-lg font-semibold text-gray-800 mb-4">Donation Status</h2>
+            <p id="modal-message" class="text-gray-600">This is where the donation success message will appear.</p>
+            <button id="closeModal" class="mt-4 bg-primary text-white px-4 py-2 rounded">Close</button>
+        </div>
+    </div>
+
+
+    <!-- history part -->
+    <div class="container mx-auto my-8">
+        <!-- Card 1 -->
+          <div id="history-list" class="hidden">
+            <div class="card bg-base-100 shadow-md mb-4">
+            </div>
+          </div>
+    
+         <div id="card-section-all">
+            <!--1 Donation Card Section -->
+            <section class="mb-5 mx-4 md:mx-16">
+                <div class="bg-white p-4 md:p-6 rounded-lg flex flex-col md:flex-row items-center border gap-6 md:gap-10">
+                  <!-- Left Side Image -->
+                  <div class="w-full md:w-1/2">
+                    <img 
+                      src="./img/01.png" 
+                      alt="Flood Relief" 
+                      class="w-full h-auto rounded-md"
+                    />
+                  </div>
+                  
+                  <!-- Right Side Content -->
+                  <div class="w-full md:w-1/2">
+                    <div>
+                      <button class="btn font-bold mb-6">
+                        <span><img src="./img/coin.png" alt="Coin Icon" class="inline-block w-5 h-5 mr-2" /></span>
+                        <span id="donation-coin-1">600</span> BDT
+                      </button>
+                    </div>
+                    
+                    <!-- Donation Title -->
+                    <h2 class="text-lg md:text-xl font-semibold text-gray-800 mb-6">
+                      <span id="h2-card1">Donate for Flood at Noakhali, Bangladesh</span>
+                    </h2>
+                    
+                    <!-- Description -->
+                    <p class="text-sm md:text-base text-gray-600 mb-6">
+                      The recent floods in Noakhali have caused significant damage to homes and infrastructure. Your donation will help provide essential supplies to those affected by this disaster. Every contribution, big or small, makes a difference. Together, we can offer crucial support and help rebuild lives. Please join us in supporting the relief efforts and making a positive impact on the lives of those in need.
+                    </p>
+                    
+                    <!-- Donation Input -->
+                    <div class="mb-4">
+                      <input id="donation-input-1"  
+                        placeholder="Write Donation Amount" 
+                        class="input input-bordered  w-full px-4 py-2"
+                      />
+                    </div>
+                    
+                    <!-- Donate Button -->
+                    <button id="DonateButton1" onclick="handleDonation(1)"
+                      class="btn bg-primary w-full font-semibold py-2">
+                      Donate Now
+                    </button>
+                  </div>
+                </div>
+            </section>  
+            <!--2 Donation Card Section -->
+            <section class="mb-5 mx-4 md:mx-16">
+                    <div class="bg-white p-4 md:p-6 rounded-lg flex flex-col md:flex-row items-center border gap-6 md:gap-10">
+                      <!-- Left Side Image -->
+                      <div class="w-full md:w-1/2">
+                        <img 
+                          src="./img/02.png" 
+                          alt="Flood Relief" 
+                          class="w-full h-auto rounded-md"
+                        />
+                      </div>
+                      
+                      <!-- Right Side Content -->
+                      <div class="w-full md:w-1/2">
+                        <div>
+                          <button class="btn font-bold mb-6">
+                            <span><img src="./img/coin.png" alt=""></span>
+                            <span id="donation-coin-2">600</span> BDT
+                          </button>
+                        </div>
+                        
+                        <!-- Donation Title -->
+                        <h2 class="text-lg md:text-xl font-semibold text-gray-800 mb-6">
+                          <span id="h2-card2">Donate for Flood at Noakhali, Bangladesh</span>
+                        </h2>
+                        
+                        <!-- Description -->
+                        <p class="text-sm md:text-base text-gray-600 mb-6">
+                          The recent floods in Noakhali have caused significant damage to homes and infrastructure. Your donation will help provide essential supplies to those affected by this disaster. Every contribution, big or small, makes a difference. Together, we can offer crucial support and help rebuild lives in the aftermath of this disaster. Please join us in supporting the relief efforts and making a positive impact on the lives of those in need.
+                        </p>
+                        
+                        <!-- Donation Input -->
+                        <div class="mb-4">
+                          <input id="donation-input-2"  
+                            placeholder="Write Donation Amount" 
+                            class="input input-bordered w-full px-4 py-2"
+                          />
+                        </div>                     
+                        <!-- Donate Button -->
+                        <button id="DonateButton2" onclick="handleDonation(2)"
+                          class="btn bg-primary w-full font-semibold py-2">
+                          Donate Now
+                        </button>
+                      </div>
+                    </div>
+            </section>
+                  
+            <!--3 Donation Card Section -->
+            <section class="mb-5 mx-4 md:mx-16">
+                    <div class="bg-white p-4 md:p-6 rounded-lg flex flex-col md:flex-row items-center border gap-6 md:gap-10">
+                      <!-- Left Side Image -->
+                      <div class="w-full md:w-1/2">
+                        <img 
+                          src="./img/03.png" 
+                          alt="Flood Relief" 
+                          class="w-full h-auto rounded-md"
+                        />
+                      </div>
+                  
+                      <!-- Right Side Content -->
+                      <div class="w-full md:w-1/2">
+                        <div>
+                          <button class="btn font-bold mb-6">
+                            <span><img src="./img/coin.png" alt=""></span>
+                            <span id="donation-coin-3">600</span> BDT
+                          </button>
+                        </div>
+                  
+                        <!-- Donation Title -->
+                        <h2 class="text-lg md:text-xl font-semibold text-gray-800 mb-6">
+                          <span id="h2-card3">Aid for Injured in the Quota Movement</span>
+                        </h2>
+                  
+                        <!-- Description -->
+                        <p class="text-sm md:text-base text-gray-600 mb-6">
+                          The recent Quota movement has resulted in numerous injuries and significant hardship for many individuals. Your support is crucial in providing medical assistance, rehabilitation, and necessary supplies to those affected. By contributing, you help ensure that injured individuals receive the care and support they need during this challenging time. Every donation plays a vital role in alleviating their suffering and aiding in their recovery. Please consider making a donation to support these brave individuals in their time of need.
+                        </p>
+                  
+                        <!-- Donation Input -->
+                        <div class="mb-4">
+                          <input 
+                            id="donation-input-3"
+                            placeholder="Write Donation Amount" 
+                            class="input input-bordered w-full px-4 py-2"
+                          />
+                        </div>
+                  
+                        <!-- Donate Button -->
+                        <button 
+                          id="DonateButton3" 
+                          onclick="handleDonation(3)"
+                          class="btn bg-primary w-full font-semibold py-2"
+                        >
+                          Donate Now
+                        </button>
+                      </div>
+                    </div>
+            </section>
+        </div>          
+   </section>
+
+   <script src="./JS/index.js"></script>
+  </body>
+
+</html>
